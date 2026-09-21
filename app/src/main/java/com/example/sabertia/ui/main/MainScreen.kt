@@ -11,6 +11,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.NavKey
 import com.example.sabertia.data.DefaultDataRepository
 import com.example.sabertia.theme.SabertiaTheme
+import androidx.compose.foundation.clickable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 @Composable
 fun MainScreen(
@@ -39,7 +44,11 @@ internal fun MainScreen(data: List<String>, modifier: Modifier = Modifier) {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-  Text(text = "Hello $name!", modifier = modifier)
+  var clicks by remember { mutableStateOf(0) }
+  Text(
+    text = "Hello $name! (clicks: $clicks)",
+    modifier = modifier.clickable { clicks++ }
+  )
 }
 
 @Preview(showBackground = true)
